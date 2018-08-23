@@ -12,6 +12,7 @@ import ARKit
 class GameViewController: UIViewController {
 
     @IBOutlet weak var myARView: ARSCNView!
+    @IBOutlet weak var plusBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,8 @@ class GameViewController: UIViewController {
         myARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
     }
 
-  
+    @IBAction func tappedPlusBtn(_ sender: UIButton) {
+    }
+    
 
 }

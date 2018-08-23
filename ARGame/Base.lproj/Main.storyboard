@@ -21,6 +21,17 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fr9-Ye-TNI">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5m7-I2-EIZ">
+                                <rect key="frame" x="10" y="607" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BlZ-tC-eUz"/>
+                                    <constraint firstAttribute="width" constant="50" id="UTf-tJ-CGe"/>
+                                </constraints>
+                                <state key="normal" image="add"/>
+                                <connections>
+                                    <action selector="tappedPlusBtn:" destination="KS9-Dd-gKS" eventType="touchUpInside" id="5tr-V9-zMX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -28,11 +39,14 @@
                             <constraint firstItem="MaM-07-Mrb" firstAttribute="trailing" secondItem="fr9-Ye-TNI" secondAttribute="trailing" id="DYE-bI-Ewa"/>
                             <constraint firstItem="MaM-07-Mrb" firstAttribute="bottom" secondItem="fr9-Ye-TNI" secondAttribute="bottom" id="Dp8-OQ-Nn5"/>
                             <constraint firstItem="fr9-Ye-TNI" firstAttribute="top" secondItem="MaM-07-Mrb" secondAttribute="top" id="HaW-YP-CiH"/>
+                            <constraint firstItem="MaM-07-Mrb" firstAttribute="bottom" secondItem="5m7-I2-EIZ" secondAttribute="bottom" constant="10" id="JNp-hR-T4P"/>
+                            <constraint firstItem="5m7-I2-EIZ" firstAttribute="leading" secondItem="MaM-07-Mrb" secondAttribute="leading" constant="10" id="LN9-NH-sza"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MaM-07-Mrb"/>
                     </view>
                     <connections>
                         <outlet property="myARView" destination="fr9-Ye-TNI" id="4hD-iu-vHX"/>
+                        <outlet property="plusBtn" destination="5m7-I2-EIZ" id="Ycz-Tu-yGq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5d-gD-egg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -40,4 +54,7 @@
             <point key="canvasLocation" x="-147" y="-184"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add" width="512" height="512"/>
+    </resources>
 </document>
