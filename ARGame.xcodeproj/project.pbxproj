@@ -12,6 +12,7 @@
 		B8FA415F212ECBF30085BDFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8FA415E212ECBF30085BDFE /* Assets.xcassets */; };
 		B8FA4162212ECBF30085BDFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8FA4160212ECBF30085BDFE /* LaunchScreen.storyboard */; };
 		B8FA416A212ECC9E0085BDFE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA4169212ECC9E0085BDFE /* GameViewController.swift */; };
+		B8FA416C212ED7F60085BDFE /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA416B212ED7F60085BDFE /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B8FA4161212ECBF30085BDFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8FA4163212ECBF30085BDFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8FA4169212ECC9E0085BDFE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		B8FA416B212ED7F60085BDFE /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				B8FA415E212ECBF30085BDFE /* Assets.xcassets */,
 				B8FA4160212ECBF30085BDFE /* LaunchScreen.storyboard */,
 				B8FA4163212ECBF30085BDFE /* Info.plist */,
+				B8FA416B212ED7F60085BDFE /* Extension.swift */,
 			);
 			path = ARGame;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8FA416C212ED7F60085BDFE /* Extension.swift in Sources */,
 				B8FA416A212ECC9E0085BDFE /* GameViewController.swift in Sources */,
 				B8FA4158212ECBF20085BDFE /* AppDelegate.swift in Sources */,
 			);
