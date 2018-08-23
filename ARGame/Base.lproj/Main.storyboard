@@ -32,21 +32,33 @@
                                     <action selector="tappedPlusBtn:" destination="KS9-Dd-gKS" eventType="touchUpInside" id="5tr-V9-zMX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEd-fy-C80">
+                                <rect key="frame" x="315" y="607" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Flw-zB-neA"/>
+                                    <constraint firstAttribute="height" constant="50" id="zlE-fM-p9Z"/>
+                                </constraints>
+                                <state key="normal" image="reset"/>
+                                <connections>
+                                    <action selector="tappedResetBtn:" destination="KS9-Dd-gKS" eventType="touchUpInside" id="NdE-xu-wr8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fr9-Ye-TNI" firstAttribute="leading" secondItem="MaM-07-Mrb" secondAttribute="leading" id="5mY-Ew-AHE"/>
                             <constraint firstItem="MaM-07-Mrb" firstAttribute="trailing" secondItem="fr9-Ye-TNI" secondAttribute="trailing" id="DYE-bI-Ewa"/>
                             <constraint firstItem="MaM-07-Mrb" firstAttribute="bottom" secondItem="fr9-Ye-TNI" secondAttribute="bottom" id="Dp8-OQ-Nn5"/>
+                            <constraint firstItem="MaM-07-Mrb" firstAttribute="trailing" secondItem="CEd-fy-C80" secondAttribute="trailing" constant="10" id="EUC-G8-6d2"/>
                             <constraint firstItem="fr9-Ye-TNI" firstAttribute="top" secondItem="MaM-07-Mrb" secondAttribute="top" id="HaW-YP-CiH"/>
                             <constraint firstItem="MaM-07-Mrb" firstAttribute="bottom" secondItem="5m7-I2-EIZ" secondAttribute="bottom" constant="10" id="JNp-hR-T4P"/>
                             <constraint firstItem="5m7-I2-EIZ" firstAttribute="leading" secondItem="MaM-07-Mrb" secondAttribute="leading" constant="10" id="LN9-NH-sza"/>
+                            <constraint firstItem="MaM-07-Mrb" firstAttribute="bottom" secondItem="CEd-fy-C80" secondAttribute="bottom" constant="10" id="TUV-RD-IaK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MaM-07-Mrb"/>
                     </view>
                     <connections>
                         <outlet property="myARView" destination="fr9-Ye-TNI" id="4hD-iu-vHX"/>
-                        <outlet property="plusBtn" destination="5m7-I2-EIZ" id="Ycz-Tu-yGq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5d-gD-egg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -56,5 +68,6 @@
     </scenes>
     <resources>
         <image name="add" width="512" height="512"/>
+        <image name="reset" width="512" height="512"/>
     </resources>
 </document>

@@ -17,3 +17,9 @@ extension Float {
         return Float.random() * (max - min) + min
     }
 }
+
+extension Int {
+    var degreesToRadians: Double {
+        return Double(self) * .pi / 180
+    }
+}
