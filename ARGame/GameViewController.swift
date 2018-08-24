@@ -21,6 +21,10 @@ class GameViewController: UIViewController {
         myARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         myARView.autoenablesDefaultLighting = true
         myARView.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapHandler(_:)))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        myARView.addGestureRecognizer(tapGesture)
     }
     
     @IBAction func tappedPlusBtn(_ sender: UIButton) {
@@ -33,6 +37,7 @@ class GameViewController: UIViewController {
         boxNode.geometry = box
         boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
         boxNode.position = SCNVector3(0, 0, 0)
+        boxNode.name = "Box"
         myARView.scene.rootNode.addChildNode(boxNode)
     }
     
@@ -59,6 +64,7 @@ class GameViewController: UIViewController {
         let centerZ = CGFloat(anchor.center.z)
         planeNode.position = SCNVector3(centerX, centerY, centerZ)
         planeNode.eulerAngles.x = -.pi / 2
+        planeNode.name = "Floor"
         return planeNode
     }
     
@@ -93,5 +99,11 @@ extension GameViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
         print("Remove Anchor")
         removeAllNode(name: "Floor")
+    }
+    @objc func tapHandler(_ gesture: UITapGestureRecognizer) {
+        print("Tapped")
+        let location = gesture.location(in: myARView)
+        guard let result = myARView.hitTest(location, options: nil).first, let name = result.node.name else { return }
+        print(name)
     }
 }
