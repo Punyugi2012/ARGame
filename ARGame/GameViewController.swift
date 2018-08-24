@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         configuration.planeDetection = .horizontal
         myARView.session.run(configuration)
-        //        myARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        myARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         myARView.autoenablesDefaultLighting = true
         myARView.delegate = self
     }
@@ -50,15 +50,14 @@ class GameViewController: UIViewController {
     }
     func getFloor(anchor: ARPlaneAnchor) -> SCNNode {
         let width = CGFloat(anchor.extent.x)
-        let height = CGFloat(anchor.extent.z)
+        let height = CGFloat(anchor.extent.y)
         let plane = SCNPlane(width: width, height: height)
         plane.materials.first?.diffuse.contents = #colorLiteral(red: 0.9176, green: 0.3176, blue: 0.5647, alpha: 1)
         let planeNode = SCNNode(geometry: plane)
-        planeNode.name = "Floor"
-        let x = CGFloat(anchor.center.x)
-        let y = CGFloat(anchor.center.y)
-        let z = CGFloat(anchor.center.z)
-        planeNode.position = SCNVector3(x,y,z)
+        let centerX = CGFloat(anchor.center.x)
+        let centerY = CGFloat(anchor.center.y)
+        let centerZ = CGFloat(anchor.center.z)
+        planeNode.position = SCNVector3(centerX, centerY, centerZ)
         planeNode.eulerAngles.x = -.pi / 2
         return planeNode
     }
