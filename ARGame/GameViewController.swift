@@ -14,9 +14,18 @@ class GameViewController: UIViewController {
     @IBOutlet weak var myARView: ARSCNView!
     let configuration = ARWorldTrackingConfiguration()
     
+    @IBOutlet weak var xLabel: UILabel!
+    @IBOutlet weak var yLabel: UILabel!
+    @IBOutlet weak var zLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    
+    var startingPositionNode: SCNNode?
+    var endingPositionNode: SCNNode?
+    let cameraRelativePosition = SCNVector3(0, 0, -0.1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configuration.planeDetection = .horizontal
+//        configuration.planeDetection = .horizontal
         myARView.session.run(configuration)
         myARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         myARView.autoenablesDefaultLighting = true
@@ -53,6 +62,7 @@ class GameViewController: UIViewController {
         removeAllNode()
         myARView.session.run(configuration, options: [.removeExistingAnchors, .resetTracking])
     }
+    
     func getFloor(anchor: ARPlaneAnchor) -> SCNNode {
         let width = CGFloat(anchor.extent.x)
         let height = CGFloat(anchor.extent.y)
@@ -94,16 +104,53 @@ extension GameViewController: ARSCNViewDelegate {
         plane.width = CGFloat(arPlaneAnchor.extent.x)
         plane.height = CGFloat(arPlaneAnchor.extent.z)
         planeNode.position = SCNVector3(CGFloat(arPlaneAnchor.center.x), CGFloat(arPlaneAnchor.center.y), CGFloat(arPlaneAnchor.center.z))
-        
     }
+    
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
         print("Remove Anchor")
         removeAllNode(name: "Floor")
     }
+    
     @objc func tapHandler(_ gesture: UITapGestureRecognizer) {
         print("Tapped")
-        let location = gesture.location(in: myARView)
-        guard let result = myARView.hitTest(location, options: nil).first, let name = result.node.name else { return }
-        print(name)
+//        let location = gesture.location(in: myARView)
+//        guard let result = myARView.hitTest(location, options: nil).first, let name = result.node.name else { return }
+//        print(name)
+        if startingPositionNode != nil && endingPositionNode != nil {
+            startingPositionNode?.removeFromParentNode()
+            endingPositionNode?.removeFromParentNode()
+            startingPositionNode = nil
+            endingPositionNode = nil
+        }
+        else if startingPositionNode != nil && endingPositionNode == nil {
+            let sphere = SCNNode(geometry: SCNSphere(radius: 0.001))
+            sphere.geometry?.firstMaterial?.diffuse.contents = UIColor.purple
+            Service.addChildNode(sphere, toNode: myARView.scene.rootNode, inView: myARView, cameraRelativePosition: cameraRelativePosition)
+            endingPositionNode = sphere
+        }
+        else if startingPositionNode == nil && endingPositionNode == nil {
+            let sphere = SCNNode(geometry: SCNSphere(radius: 0.001))
+            sphere.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+            Service.addChildNode(sphere, toNode: myARView.scene.rootNode, inView: myARView, cameraRelativePosition: cameraRelativePosition)
+            startingPositionNode = sphere
+        }
+
     }
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+                print("Hello")
+        if startingPositionNode != nil && endingPositionNode != nil  {
+            return
+        }
+        guard let xDistance = Service.distance3(fromStartingPositionNode: startingPositionNode, onView: myARView, cameraRelativePosition: cameraRelativePosition)?.x else {return}
+        guard let yDistance = Service.distance3(fromStartingPositionNode: startingPositionNode, onView: myARView, cameraRelativePosition: cameraRelativePosition)?.y else {return}
+        guard let zDistance = Service.distance3(fromStartingPositionNode: startingPositionNode, onView: myARView, cameraRelativePosition: cameraRelativePosition)?.z else {return}
+        DispatchQueue.main.async {
+            self.xLabel.text = String(format: "x: %.2f", xDistance) + "m"
+            self.yLabel.text = String(format: "y: %.2f", yDistance) + "m"
+            self.zLabel.text = String(format: "z: %.2f", zDistance) + "m"
+            self.distanceLabel.text = String(format: "Distance: %.2f", Service.distance(x: xDistance, y: yDistance, z: zDistance)) + "m"
+        }
+    }
+    
 }
