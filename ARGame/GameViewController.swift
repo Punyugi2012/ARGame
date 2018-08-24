@@ -138,7 +138,6 @@ extension GameViewController: ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-                print("Hello")
         if startingPositionNode != nil && endingPositionNode != nil  {
             return
         }
